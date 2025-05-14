@@ -40,7 +40,7 @@ The dataset VerifiedQ_A.xlsx contains cleaned medical question-answer pairs from
 
 ## Project Steps
 
-1. Data Preparation:
+1. **Data Preparation**:
 
   - Cleaned the MedQuad dataset to create VerifiedQ_A.xlsx.
 
