@@ -44,17 +44,23 @@ The dataset VerifiedQ_A.xlsx contains cleaned medical question-answer pairs from
 
   - Cleaned the MedQuad dataset to create VerifiedQ_A.xlsx.
 
+
+
 2. Model Answer Generation:
 
   - Used the pre-trained Llama3.2 3B model to generate answers based on reference questions.
 
   - Stored results in generated_answers.xlsx.
 
+
+
 3. Benchmarking Metrics Calculation:
 
 - Calculated BERT score, BLEU score, and DeepEval correctness using the generated answers.
 
 - Stored results in respective CSV/XLSX files.
+
+
 
 4. Comparative Analysis:
 
@@ -63,6 +69,8 @@ The dataset VerifiedQ_A.xlsx contains cleaned medical question-answer pairs from
   - Analyzed BERT F1, BLEU, and DeepEval Correctness scores.
 
   - Provided visualizations and interpretations.
+
+
 
 ## Key Findings
 The fine-tuned Llama3.2 model shows substantial improvements in semantic and lexical similarity over the pre-trained model, though maintaining factual accuracy remains a challenge. The comparative analysis suggests that while fine-tuning enhances the model's natural language generation, it requires careful balance to preserve factual consistency.
@@ -73,32 +81,17 @@ The fine-tuned Llama3.2 model shows substantial improvements in semantic and lex
 
   - Moderate drop in factual correctness compared to pre-trained.
 
+
+
 2. LoRA Model:
 
   - Modest gain in BERT F1, but notable decrease in DeepEval correctness.
 
+
+
 3. Pre-trained Model:
 
   - Consistently high factual accuracy but lacks semantic and lexical alignment improvements.
-
-## Model Training and Evaluation
-
-1. Pre-trained Model Evaluation:
-  - Use the original Llama3.2 3B model to generate answers for the reference questions.
-  - Save the generated answers as generated_answers.xlsx.
-  - Compute the BERT score, BLEU score, and DeepEval correctness.
-
-2. LoRA Fine-Tuning:
-  - Fine-tune the model using LoRA adapters.
-  - Generate answers and calculate benchmarking metrics as above.
-
-3. Full Fine-Tuning:
-  - Perform full fine-tuning on the MedQuad dataset.
-  - Generate answers and compute evaluation metrics.
-
-4. Result Comparison:
-  - Use `model_compare.ipynb` to compare the results from all three models (Pre-trained, LoRA, Fine-tune).
-  - Results are presented as graphs and tables in the notebook.
 
 ## Results
 The fine-tuned Llama3.2 model shows substantial improvements in semantic and lexical similarity over the pre-trained model, though maintaining factual accuracy remains a challenge. The comparative analysis suggests that while fine-tuning enhances the model's natural language generation, it requires careful balance to preserve factual consistency.
