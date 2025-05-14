@@ -40,16 +40,16 @@ The dataset VerifiedQ_A.xlsx contains cleaned medical question-answer pairs from
 
 ## Project Steps
 
-### 1. Data Preparation:
+#### 1. Data Preparation:
 - Cleaned the MedQuad dataset to create VerifiedQ_A.xlsx.
 
-### 2. Model Answer Generation:
+#### 2. Model Answer Generation:
   - Used the pre-trained Llama3.2 3B model to generate answers based on reference questions.
   - Stored results in generated_answers.xlsx.
 
 
 
-### 3. Benchmarking Metrics Calculation:
+#### 3. Benchmarking Metrics Calculation:
 
 - Calculated BERT score, BLEU score, and DeepEval correctness using the generated answers.
 
@@ -57,7 +57,7 @@ The dataset VerifiedQ_A.xlsx contains cleaned medical question-answer pairs from
 
 
 
-### 4. Comparative Analysis:
+#### 4. Comparative Analysis:
 
   - Use `model_compare.ipynb` to compare the performance of three model configurations (pre-trained, LoRA, fine-tune).
 
@@ -70,7 +70,7 @@ The dataset VerifiedQ_A.xlsx contains cleaned medical question-answer pairs from
 ## Key Findings
 The fine-tuned Llama3.2 model shows substantial improvements in semantic and lexical similarity over the pre-trained model, though maintaining factual accuracy remains a challenge. The comparative analysis suggests that while fine-tuning enhances the model's natural language generation, it requires careful balance to preserve factual consistency.
 
-### 1. Fine-tune Model:
+#### 1. Fine-tune Model:
 
   - Significant improvement in BERT F1 and BLEU scores compared to both pre-trained and LoRA.
 
@@ -78,13 +78,13 @@ The fine-tuned Llama3.2 model shows substantial improvements in semantic and lex
 
 
 
-### 2. LoRA Model:
+#### 2. LoRA Model:
 
   - Modest gain in BERT F1, but notable decrease in DeepEval correctness.
 
 
 
-### 3. Pre-trained Model:
+#### 3. Pre-trained Model:
 
   - Consistently high factual accuracy but lacks semantic and lexical alignment improvements.
 
