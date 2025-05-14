@@ -1,55 +1,99 @@
 # Llama3.2-MedQuad-Finetune
 
 ## Project Overview
-This project focuses on fine-tuning the Llama 3.2 3B model using the MedQuad dataset to optimize the model's ability to answer medical questions accurately. The goal is to enhance the model’s semantic similarity, lexical alignment, and factual correctness while carefully balancing these aspects to avoid compromising accuracy.
+This project aims to fine-tune the Llama3.2 3B model on the MedQuad dataset, comparing the performance of the pre-trained model, LoRA adaptation, and full fine-tuning. The primary goal is to evaluate and compare the performance of these models using medical question-answer pairs from the MedQuad dataset.
 
 ## Repository Structure
 ```
 Llama3.2-MedQuad-Finetune/
-├── data/                   # Raw and cleaned MedQuad datasets
-├── models/                 # Pre-trained, LoRA fine-tuned, and fully fine-tuned models
-├── notebooks/              # Jupyter notebooks for data processing and analysis
-├── results/                # Evaluation results including BERT, BLEU, and DeepEval scores
-├── scripts/                # Python scripts for model training and evaluation
-└── README.md               # Project overview and instructions
+│
+├── fine-tune/
+│   ├── bert_score_results.csv
+│   ├── bleu_score_results.csv
+│   ├── final_eval_results.xlsx
+│   ├── generated_answers.xlsx
+│   └── testllama32_BertDeepBLEU_FineT.ipynb
+│
+├── LoRA/
+│   ├── bert_score_results.csv
+│   ├── bleu_score_results.csv
+│   ├── final_eval_results.xlsx
+│   └── generated_answers.xlsx
+│
+├── pre-trained/
+│   ├── bert_score_results.csv
+│   ├── bleu_score_results.csv
+│   ├── final_eval_results.xlsx
+│   └── generated_answers.xlsx
+│
+├── model_compare.ipynb
+└── VerifiedQ_A.xlsx
 ```
 
-## Key Components
-1. **Data:** Contains the cleaned MedQuad dataset (`VerifiedQ_A.xlsx`) used for training and evaluation.
-2. **Models:** Includes the pre-trained, LoRA fine-tuned, and fully fine-tuned Llama 3.2 3B models.
-3. **Notebooks:** Jupyter notebooks for model fine-tuning, result generation, and comparative analysis.
-4. **Results:** Contains the generated answers and evaluation scores (BERT, BLEU, DeepEval).
-5. **Scripts:** Python files for data processing, model training, and benchmarking.
+## Data Description
+The dataset VerifiedQ_A.xlsx contains cleaned medical question-answer pairs from the MedQuad dataset. This file includes reference questions and their corresponding correct answers, which are used for model fine-tuning and evaluation.
 
-## Installation and Setup
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/username/Llama3.2-MedQuad-Finetune.git
-   ```
-2. Install required packages:
-   ```bash
-   pip install transformers datasets accelerate peft bitsandbytes torch openpyxl bert_score
-   ```
-3. Set up the environment:
-   ```bash
-   export TOKENIZERS_PARALLELISM=false
-   ```
+## Project Steps
 
-## Usage
-### Running the Fine-Tuning Script
-```bash
-python scripts/fine_tune.py --model llama3.2 --dataset data/VerifiedQ_A.xlsx
-```
+1. Data Preparation:
 
-### Generating Answers
-```bash
-python scripts/generate_answers.py --model fine-tune --input data/VerifiedQ_A.xlsx
-```
+- Cleaned the MedQuad dataset to create VerifiedQ_A.xlsx.
 
-### Evaluating Results
-```bash
-python scripts/evaluate.py --input results/generated_answers.xlsx
-```
+2. Model Answer Generation:
+
+- Used the pre-trained Llama3.2 3B model to generate answers based on reference questions.
+
+- Stored results in generated_answers.xlsx.
+
+3. Benchmarking Metrics Calculation:
+
+- Calculated BERT score, BLEU score, and DeepEval correctness using the generated answers.
+
+- Stored results in respective CSV/XLSX files.
+
+4. Comparative Analysis:
+
+- Use `model_compare.ipynb` to compare the performance of three model configurations (pre-trained, LoRA, fine-tune).
+
+- Analyzed BERT F1, BLEU, and DeepEval Correctness scores.
+
+- Provided visualizations and interpretations.
+
+## Key Findings
+The fine-tuned Llama3.2 model shows substantial improvements in semantic and lexical similarity over the pre-trained model, though maintaining factual accuracy remains a challenge. The comparative analysis suggests that while fine-tuning enhances the model's natural language generation, it requires careful balance to preserve factual consistency.
+
+1. Fine-tune Model:
+
+- Significant improvement in BERT F1 and BLEU scores compared to both pre-trained and LoRA.
+
+- Moderate drop in factual correctness compared to pre-trained.
+
+2. LoRA Model:
+
+- Modest gain in BERT F1, but notable decrease in DeepEval correctness.
+
+3. Pre-trained Model:
+
+- Consistently high factual accuracy but lacks semantic and lexical alignment improvements.
+
+## Model Training and Evaluation
+
+1. Pre-trained Model Evaluation:
+- Use the original Llama3.2 3B model to generate answers for the reference questions.
+- Save the generated answers as generated_answers.xlsx.
+- Compute the BERT score, BLEU score, and DeepEval correctness.
+
+2. LoRA Fine-Tuning:
+- Fine-tune the model using LoRA adapters.
+- Generate answers and calculate benchmarking metrics as above.
+
+3. Full Fine-Tuning:
+- Perform full fine-tuning on the MedQuad dataset.
+- Generate answers and compute evaluation metrics.
+
+4. Result Comparison:
+- Use `model_compare.ipynb` to compare the results from all three models (Pre-trained, LoRA, Fine-tune).
+- Results are presented as graphs and tables in the notebook.
 
 ## Evaluation Metrics
 - **BERT Score:** Measures semantic similarity between model-generated answers and reference answers.
@@ -59,13 +103,17 @@ python scripts/evaluate.py --input results/generated_answers.xlsx
 ## Results
 The fine-tuned Llama3.2 model shows substantial improvements in semantic and lexical similarity over the pre-trained model, though maintaining factual accuracy remains a challenge. The comparative analysis suggests that while fine-tuning enhances the model's natural language generation, it requires careful balance to preserve factual consistency.
 
+## Usage:
+- Run `testllama32_BertDeepBLEU_FineT.ipynb` to generate model answers and calculate benchmarking scores.
+- Run `model_compare.ipynb` to compare model performances.
+
+## Dependencies
+`transformers`, `datasets`, `torch`, `accelerate`, `peft`, `bitsandbytes`, `openpyxl`, `bert_score`
+
 ## Future Work
 - Investigate why fine-tuning might reduce factual correctness despite improved fluency.
 - Experiment with different prompting strategies and hybrid evaluation methods.
 
-## Contributors
-- Fung Chau (Primary Fine-Tuning and Evaluation)
-- Bowen (Prompting Method Optimization)
 
-## License
-This project is licensed under the MIT License.
+
+
