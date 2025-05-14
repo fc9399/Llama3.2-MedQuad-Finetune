@@ -40,16 +40,13 @@ The dataset VerifiedQ_A.xlsx contains cleaned medical question-answer pairs from
 
 ## Project Steps
 
-1. **Data Preparation**:
-
-  - Cleaned the MedQuad dataset to create VerifiedQ_A.xlsx.
+1. Data Preparation:
+- Cleaned the MedQuad dataset to create VerifiedQ_A.xlsx.
 
 
 
 2. Model Answer Generation:
-
   - Used the pre-trained Llama3.2 3B model to generate answers based on reference questions.
-
   - Stored results in generated_answers.xlsx.
 
 
